@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "name": "Wllysses Tavares Paz Júnior",
+      "email": "wtpj@hotmail.com",
+      "password": "pereira10",
+      "tel": "83988745654",
+      "id": 1
+    },
+    {
+      "name": "Murico da Silva",
+      "email": "murico@email.com",
+      "password": "murico50",
+      "tel": "83986019889",
+      "id": 2
+    },
+    {
+      "name": "Deise Pereira da Silva",
+      "email": "deysemartins@live.com",
+      "password": "deyse123",
+      "tel": "83988745654",
+      "id": 3
+    }
+  ]
+}
