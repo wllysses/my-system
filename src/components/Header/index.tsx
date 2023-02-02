@@ -8,7 +8,7 @@ export const Header = () => {
                 <S.Title>
                     MySystem
                 </S.Title>
-                <Link to="/">
+                <Link to="/login">
                     <S.LogoutButton>Sair</S.LogoutButton>
                 </Link>
             </S.Header>

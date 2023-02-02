@@ -2,19 +2,38 @@ import { createContext, useEffect, useState } from "react";
 import { SubmitHandler } from 'react-hook-form'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IChildren, IRandomUsersProps, IUserProps } from "../../interfaces";
+import { IChildren, IRandomUserProps, IUserProps } from "../../interfaces";
 import { registerUser, getUsers, getRandomUsers } from "../../services/api";
 
-export const GlobalContext = createContext({})
+interface IContextProps {
+    page: number
+    randomUsers: IRandomUserProps[]
+    handleLogin: SubmitHandler<IUserProps>
+    handleRegister: SubmitHandler<IUserProps>
+    handlePrevPage: () => void
+    handleNextPage: () => void
+}
+
+const initialValue = {
+    page: 1,
+    randomUsers: [],
+    handleRegister: () => {},
+    handleLogin: () => {},
+    handlePrevPage: () => {},
+    handleNextPage: () => {}
+}
+
+export const GlobalContext = createContext<IContextProps>(initialValue)
 
 export const GlobalProvider = ({ children }: IChildren) => {
 
-    const [randomUsers, setRandomUsers] = useState<IRandomUsersProps[]>([])
-    const [page, setPage] = useState<number>(1)
+    //states
+    const [randomUsers, setRandomUsers] = useState<IRandomUserProps[]>(initialValue.randomUsers)
+    const [page, setPage] = useState<number>(initialValue.page)
     const navigate = useNavigate()
 
     //function to user register
-    const handleRegister: SubmitHandler<IUserProps> = async (data): Promise<void> => {
+    const handleRegister = async (data: IUserProps): Promise<void> => {
 
         const users = await getUsers()
         const filteredUsers = users.filter((user) => user.email === data.email)
@@ -28,7 +47,7 @@ export const GlobalProvider = ({ children }: IChildren) => {
     }
 
     //function to user login
-    const handleLogin: SubmitHandler<IUserProps> = async (data): Promise<void> => {
+    const handleLogin = async (data: IUserProps): Promise<void> => {
         
         const users = await getUsers()
         const filteredUser = users.filter((user) => {
@@ -45,28 +64,30 @@ export const GlobalProvider = ({ children }: IChildren) => {
         }
     }
 
+    //function prev page
     const handlePrevPage = () => {
         page > 1 && setPage(page - 1)
     }
 
+    //function next page
     const handleNextPage = () => {
         setPage(page + 1)
     }
 
+    // get random users data and pagination effect
     useEffect(() => {
-        const handleGetUsers = async () => {
+        const getUsers = async () => {
             const data = await getRandomUsers(page)
             setRandomUsers(data)
         }
 
-        handleGetUsers()
+        getUsers()
     }, [page])
-
 
 
     return (
         <GlobalContext.Provider value={{ handleRegister, handleLogin, randomUsers, handlePrevPage, handleNextPage, page }}>
-            {children}
+            { children }
         </GlobalContext.Provider>
     )
 }

@@ -1,8 +1,9 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
-import { IRandomUsersProps } from '../../interfaces'
+import { IRandomUserProps } from '../../interfaces'
 import { Card } from '../Card'
 import * as S from './styles'
+
 
 export const CardList = () => {
 
@@ -16,7 +17,7 @@ export const CardList = () => {
                 </S.Title>
                 <S.List>
                     {
-                       randomUsers.map((user: IRandomUsersProps, index: number) => {
+                       randomUsers.map((user: IRandomUserProps, index: number) => {
                         return (
                             <Card 
                                 key={index}

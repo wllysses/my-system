@@ -13,7 +13,7 @@ import * as S from './styles'
 export const RegisterForm = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<IUserProps>()
-    const { handleRegister }: any = useContext(GlobalContext)
+    const { handleRegister } = useContext(GlobalContext)
 
     return (
         <S.RegisterWrapper>

@@ -1,13 +1,7 @@
+import { ICardProps } from '../../interfaces'
 import * as S from './styles'
 
-interface IProps {
-    firstName: string
-    lastName: string
-    email: string
-    picture: string
-}
-
-export const Card = ({ firstName, lastName, email, picture }: IProps) => {
+export const Card = ({ firstName, lastName, email, picture }: ICardProps) => {
     return (
         <S.CardWrapper>
             <S.UserAvatar src={picture} alt={`Username : ${firstName} ${lastName}`}/>

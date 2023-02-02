@@ -11,8 +11,20 @@ export interface IChildren {
     children: ReactNode
 }
 
-export interface IRandomUsersProps {
-    name: string
+export interface IRandomUserProps {
+    name: {
+        first: string
+        last: string
+    }
+    email: string
+    picture: {
+        large: string
+    }
+}
+
+export interface ICardProps {
+    firstName: string
+    lastName: string
     email: string
     picture: string
 }

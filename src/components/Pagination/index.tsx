@@ -2,15 +2,10 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../contexts/GlobalContext'
 import * as S from './styles'
 
-interface IPaginationProps {
-    handlePrevPage: () => void
-    handleNextPage: () => void
-    page: number
-}
 
 export const Pagination = () => {
 
-    const { handlePrevPage, handleNextPage, page } = useContext<IPaginationProps>(GlobalContext)
+    const { handlePrevPage, handleNextPage, page } = useContext(GlobalContext)
 
     return (
         <S.PaginationWrapper>
