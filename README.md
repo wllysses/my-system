@@ -1,4 +1,4 @@
-# my-system
+# MySystem Project
 
 ## Rodando o projeto localmente
 - Clonar o repositório
